@@ -267,3 +267,80 @@ trunc x = realToFrac (c_trunc (realToFrac x))
 
 foreign import ccall unsafe "math.h trunc"
      c_trunc    :: CDouble -> CDouble
+
+-- | The erf calculates the error function of x. The error function is defined as:
+--
+-- > erf(x) = 2/sqrt(pi)*integral from 0 to x of exp(-t*t) dt.
+--
+erf :: Double -> Double
+erf x = realToFrac (c_erf (realToFrac x))
+{-# INLINE erf #-}
+
+foreign import ccall unsafe "math.h erf"
+     c_erf      :: CDouble -> CDouble
+
+-- | The erfc function calculates the complementary error function of x;
+-- that is erfc() subtracts the result of the error function erf(x) from
+-- 1.0.  This is useful, since for large x places disappear.
+--
+erfc :: Double -> Double
+erfc x = realToFrac (c_erfc (realToFrac x))
+{-# INLINE erfc #-}
+
+foreign import ccall unsafe "math.h erfc"
+     c_erfc     :: CDouble -> CDouble
+
+-- | The gamma function.
+--
+gamma :: Double -> Double
+gamma x = realToFrac (c_gamma (realToFrac x))
+{-# INLINE gamma #-}
+
+foreign import ccall unsafe "math.h gamma"
+     c_gamma    :: CDouble -> CDouble
+
+-- | The hypot function function computes the sqrt(x*x+y*y) in such a way that
+-- underflow will not happen, and overflow occurs only if the final result
+-- deserves it.  
+-- 
+-- > hypot(Infinity, v) = hypot(v, Infinity) = +Infinity for all v, including NaN.
+--
+hypot :: Double -> Double -> Double
+hypot x y = realToFrac (c_hypot (realToFrac x) (realToFrac y))
+{-# INLINE hypot #-}
+
+foreign import ccall unsafe "math.h hypot"
+     c_hypot    :: CDouble -> CDouble -> CDouble
+
+-- | The isinf function returns 1 if the number n is Infinity, otherwise 0.
+--
+isinf :: Double -> Int
+isinf x = fromIntegral (c_isinf (realToFrac x))
+{-# INLINE isinf #-}
+
+foreign import ccall unsafe "math.h isinf"
+     c_isinf    :: CDouble -> CInt
+
+-- | The isnan function returns 1 if the number n is ``not-a-number'',
+-- otherwise 0.
+--
+isnan :: Double -> Int
+isnan x = fromIntegral (c_isnan (realToFrac x))
+{-# INLINE isnan #-}
+
+foreign import ccall unsafe "math.h isnan"
+     c_isnan    :: CDouble -> CInt
+
+-- | finite returns the value 1 just when -Infinity < x < +Infinity; otherwise
+-- a zero is returned (when |x| = Infinity or x is NaN.
+--
+finite :: Double -> Int
+finite x = fromIntegral (c_finite (realToFrac x))
+{-# INLINE finite #-}
+
+foreign import ccall unsafe "math.h finite"
+     c_finite    :: CDouble -> CInt
+
+-- j0, j1, jn , lgamma, y0, y1, yn
+
+

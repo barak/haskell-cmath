@@ -22,4 +22,7 @@ main = sequence_
     , quickCheck $ \x y     -> x >= 0 ==> C.pow  x y    ==  x ** y
     , quickCheck $ \x      -> x >= 0 ==> C.sqrt x == sqrt x
 
+
+    , quickCheck $ \x -> C.log10 x == (log x  / log 10 )
+
     ]
