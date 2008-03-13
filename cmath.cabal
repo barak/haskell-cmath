@@ -10,6 +10,7 @@ copyright:       (c) 2008. Don Stewart <dons@galois.com>
 author:          Don Stewart
 maintainer:      Don Stewart <dons@galois.com>
 tested-with:     GHC ==6.8.2
+build-type:      Simple
 exposed-modules: Foreign.C.Math.Double
 extensions:      CPP, ForeignFunctionInterface
 ghc-options:     -Wall -O2 -fvia-C -optc-std=c99
