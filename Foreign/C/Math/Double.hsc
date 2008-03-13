@@ -341,6 +341,66 @@ finite x = fromIntegral (c_finite (realToFrac x))
 foreign import ccall unsafe "math.h finite"
      c_finite    :: CDouble -> CInt
 
--- j0, j1, jn , lgamma, y0, y1, yn
+-- | The functions j0() and j1() compute the Bessel function of the
+-- first kind of the order 0 and the order 1, respectively, for the real
+-- value x
+--
+j0 :: Double -> Double
+j0 x = realToFrac (c_j0 (realToFrac x))
+{-# INLINE j0 #-}
 
+foreign import ccall unsafe "math.h j0"
+     c_j0    :: CDouble -> CDouble
 
+-- | The functions j0() and j1() compute the Bessel function of the
+-- first kind of the order 0 and the order 1, respectively, for the real
+-- value x
+--
+j1 :: Double -> Double
+j1 x = realToFrac (c_j1 (realToFrac x))
+{-# INLINE j1 #-}
+
+foreign import ccall unsafe "math.h j1"
+     c_j1    :: CDouble -> CDouble
+
+-- | The functions y0() and y1() compute the linearly independent Bessel
+-- function of the second kind of the order 0 and the order 1,
+-- respectively, for the positive integer value x (expressed as a double)
+--
+y0 :: Double -> Double
+y0 x = realToFrac (c_y0 (realToFrac x))
+{-# INLINE y0 #-}
+
+foreign import ccall unsafe "math.h y0"
+     c_y0    :: CDouble -> CDouble
+
+-- | The functions y0() and y1() compute the linearly independent Bessel
+-- function of the second kind of the order 0 and the order 1,
+-- respectively, for the positive integer value x (expressed as a double)
+--
+y1 :: Double -> Double
+y1 x = realToFrac (c_y1 (realToFrac x))
+{-# INLINE y1 #-}
+
+foreign import ccall unsafe "math.h y1"
+     c_y1    :: CDouble -> CDouble
+
+-- | yn() computes the Bessel function of the second kind for the
+-- integer Bessel0 n for the positive integer value x (expressed as a
+-- double).
+--
+yn :: Int -> Double -> Double
+yn x y = realToFrac (c_yn (fromIntegral x) (realToFrac y))
+{-# INLINE yn #-}
+
+foreign import ccall unsafe "math.h yn"
+     c_yn    :: CInt -> CDouble -> CDouble
+
+-- | lgamma(x) returns ln|| (x)|.
+--
+lgamma :: Double -> Double
+lgamma x = realToFrac (c_lgamma (realToFrac x))
+{-# INLINE lgamma #-}
+
+foreign import ccall unsafe "math.h lgamma"
+     c_lgamma    :: CDouble -> CDouble
