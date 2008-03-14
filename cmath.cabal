@@ -1,5 +1,5 @@
 name:            cmath
-version:         0.2
+version:         0.3
 homepage:        http://code.haskell.org/~dons/code/cmath
 synopsis:        A binding to the standard C math library
 description:     A binding to the standard C math library
