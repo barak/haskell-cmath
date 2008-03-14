@@ -404,3 +404,90 @@ lgamma x = realToFrac (c_lgamma (realToFrac x))
 
 foreign import ccall unsafe "math.h lgamma"
      c_lgamma    :: CDouble -> CDouble
+
+
+-- | The acosh function computes the inverse hyperbolic cosine of the real argument x. 
+--
+acosh :: Double -> Double
+acosh x = realToFrac (c_acosh (realToFrac x))
+{-# INLINE acosh #-}
+
+foreign import ccall unsafe "math.h acosh"
+     c_acosh    :: CDouble -> CDouble
+
+-- | The asinh function computes the inverse hyperbolic sine of the real argument. 
+--
+asinh :: Double -> Double
+asinh x = realToFrac (c_asinh (realToFrac x))
+{-# INLINE asinh #-}
+
+foreign import ccall unsafe "math.h asinh"
+     c_asinh    :: CDouble -> CDouble
+
+-- | The atanh function computes the inverse hyperbolic tangent of the real argument x.
+--
+atanh :: Double -> Double
+atanh x = realToFrac (c_atanh (realToFrac x))
+{-# INLINE atanh #-}
+
+foreign import ccall unsafe "math.h atanh"
+     c_atanh    :: CDouble -> CDouble
+
+-- | The cbrt function computes the cube root of x.
+--
+cbrt :: Double -> Double
+cbrt x = realToFrac (c_cbrt (realToFrac x))
+{-# INLINE cbrt #-}
+
+foreign import ccall unsafe "math.h cbrt"
+     c_cbrt    :: CDouble -> CDouble
+
+-- | logb x returns x's exponent n, a signed integer converted to double-precision floating-point.
+-- > logb(+-Infinity) = +Infinity;
+-- > logb(0) = -Infinity with a division by zero exception.
+--
+logb :: Double -> Double
+logb x = realToFrac (c_logb (realToFrac x))
+{-# INLINE logb #-}
+
+foreign import ccall unsafe "math.h logb"
+     c_logb    :: CDouble -> CDouble
+
+
+-- | nextafter returns the next machine representable number from x in direction y.
+--
+nextafter :: Double -> Double -> Double
+nextafter x y = realToFrac (c_nextafter (realToFrac x) (realToFrac y))
+{-# INLINE nextafter #-}
+
+foreign import ccall unsafe "math.h nextafter"
+     c_nextafter    :: CDouble -> CDouble -> CDouble
+
+-- | remainder returns the remainder r := x - n*y where n is the integer
+-- nearest the exact value of x/y; moreover if |n - x/y| = 1/2 then n is even.
+-- Consequently, the remainder is computed exactly and |r| <= |y|/2.  But
+-- remainder(x, 0) and remainder(Infinity, 0) are invalid operations that produce
+-- a NaN.  --
+remainder :: Double -> Double -> Double
+remainder x y = realToFrac (c_remainder (realToFrac x) (realToFrac y))
+{-# INLINE remainder #-}
+
+foreign import ccall unsafe "math.h remainder"
+     c_remainder    :: CDouble -> CDouble -> CDouble
+
+scalb :: Double -> Double -> Double
+scalb x y = realToFrac (c_scalb (realToFrac x) (realToFrac y))
+{-# INLINE scalb #-}
+
+foreign import ccall unsafe "math.h scalb"
+     c_scalb    :: CDouble -> CDouble -> CDouble
+
+-- | significand(x) returns sig, where x := sig * 2**n with 1 <= sig < 2.
+-- significand(x) is not defined when x is 0, +-Infinity, or NaN.
+--
+significand :: Double -> Double
+significand x = realToFrac (c_significand (realToFrac x))
+{-# INLINE significand #-}
+
+foreign import ccall unsafe "math.h significand"
+     c_significand    :: CDouble -> CDouble
