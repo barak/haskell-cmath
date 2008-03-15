@@ -442,7 +442,9 @@ cbrt x = realToFrac (c_cbrt (realToFrac x))
 foreign import ccall unsafe "math.h cbrt"
      c_cbrt    :: CDouble -> CDouble
 
--- | logb x returns x's exponent n, a signed integer converted to double-precision floating-point.
+-- | logb x returns x's exponent n, a signed integer converted to
+-- double-precision floating-point.  
+-- 
 -- > logb(+-Infinity) = +Infinity;
 -- > logb(0) = -Infinity with a division by zero exception.
 --
@@ -475,6 +477,7 @@ remainder x y = realToFrac (c_remainder (realToFrac x) (realToFrac y))
 foreign import ccall unsafe "math.h remainder"
      c_remainder    :: CDouble -> CDouble -> CDouble
 
+-- | scalb(x, n) returns x*(2**n) computed by exponent manipulation.
 scalb :: Double -> Double -> Double
 scalb x y = realToFrac (c_scalb (realToFrac x) (realToFrac y))
 {-# INLINE scalb #-}
@@ -491,3 +494,33 @@ significand x = realToFrac (c_significand (realToFrac x))
 
 foreign import ccall unsafe "math.h significand"
      c_significand    :: CDouble -> CDouble
+
+
+-- |  copysign x y returns x with its sign changed to y's.
+copysign :: Double -> Double -> Double
+copysign x y = realToFrac (c_copysign (realToFrac x) (realToFrac y))
+{-# INLINE copysign #-}
+
+foreign import ccall unsafe "math.h copysign"
+     c_copysign    :: CDouble -> CDouble -> CDouble
+
+-- | ilogb() returns x's exponent n, in integer format.
+--    ilogb(+-Infinity) re- turns INT_MAX and ilogb(0) returns INT_MIN.
+--
+ilogb :: Double -> Int
+ilogb x = fromIntegral (c_ilogb (realToFrac x))
+{-# INLINE ilogb #-}
+
+foreign import ccall unsafe "math.h ilogb"
+     c_ilogb    :: CDouble -> CInt
+
+-- | The rint() function returns the integral value (represented as a
+-- double precision number) nearest to x according to the prevailing
+-- rounding mode.
+--
+rint :: Double -> Double
+rint x = realToFrac (c_rint (realToFrac x))
+{-# INLINE rint #-}
+
+foreign import ccall unsafe "math.h rint"
+     c_rint    :: CDouble -> CDouble
