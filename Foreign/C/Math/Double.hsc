@@ -21,8 +21,6 @@ import Prelude (Double,realToFrac,fromIntegral,($),return,IO)
 
 import Foreign
 import Foreign.C.Types
-import Foreign.Ptr
-import Foreign.Marshal.Alloc
 
 import System.IO.Unsafe (unsafePerformIO)
 
