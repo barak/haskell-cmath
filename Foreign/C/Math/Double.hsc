@@ -24,6 +24,8 @@ import Foreign.C.Types
 import Foreign.Ptr
 import Foreign.Marshal.Alloc
 
+import System.IO.Unsafe (unsafePerformIO)
+
 #include <math.h>
 
 
